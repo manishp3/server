@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 // // ];
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://client-gamma-black.vercel.app/"
+  "https://client-gamma-black.vercel.app"
 ];
 
 
@@ -37,6 +37,8 @@ app.use(cors({
     }
   },
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 // app.use(session({
