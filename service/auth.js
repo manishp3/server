@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const nodemailer = require("nodemailer")
+
 const generateJwtToken = (user) => {
     console.log("generateJwtToken role::", user);
 
