@@ -8,7 +8,7 @@ async function handleSignup(req, res) {
     const userExist = await User.findOne({ email: email })
     console.log("log of signup body by mdd:: 2");
     if (userExist) {
-      return res.status(200).json({ msg: "User Already exist!",status_code:409 })
+      return res.status(200).json({ msg: "User Already exist!", status_code: 409 })
     }
     console.log("log of signup body by mdd:: 3");
     let taskData = {
@@ -30,21 +30,27 @@ async function handleSignup(req, res) {
 
 
 async function handleSignin(req, res) {
-  console.log("handleSignin:", req.body);
+  console.log("handleSignin: 0", req.body);
 
   try {
+    console.log("handleSignin: 2", req.body);
     const { email, password } = req.body;
+    console.log("handleSignin: 3", req.body);
     const user = await User.findOne({ email });
+    console.log("handleSignin: 4", req.body);
     if (!user) {
       // not found
       return res.status(201).json({ msg: "Please register!", status_code: 404 });
     }
+    console.log("handleSignin: 5", req.body);
 
     const token = await User.matchPassword(email, password);
+    console.log("handleSignin: 6", token);
     if (!token) {
       // unauthenticate
       return res.status(201).json({ msg: "Wrong Password!", success: true, status_code: 401 });
     }
+    console.log("handleSignin: 7");
 
     res
       .cookie("token", token)
@@ -63,7 +69,7 @@ async function handleSignin(req, res) {
 async function handleGetMyProfile(req, res) {
   try {
     const autUser = req.user;
-    return res.status(200).json({ msg: "profile get succesfully!",status_code:200, autUser })
+    return res.status(200).json({ msg: "profile get succesfully!", status_code: 200, autUser })
 
   } catch (error) {
     return res.status(200).json({

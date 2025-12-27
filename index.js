@@ -54,7 +54,9 @@ connectToMongo(process.env.MONGO_URL);
 
 // public api's
 app.use("/auth", autRouter);
-
+app.get("/cron", (req, res) => {
+  return res.json({ msg: "get call success!", status_code: 200 });
+});
 // protected api's
 app.use("/", validateAuthToken("token"), productRouter);
 
