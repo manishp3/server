@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const cookie = require("cookie-parser");
-const session = require("express-session");
+// const session = require("express-session");
 const connectToMongo = require("./connection");
 const autRouter = require("./router/auth");
 const productRouter = require("./router/product");
@@ -39,13 +39,13 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }  //set true only in production with HTTPS
+// app.use(session({
+//   secret: process.env.SECRET,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: false }  //set true only in production with HTTPS
 
-}))
+// }))
 
 app.use(cookie())
 
